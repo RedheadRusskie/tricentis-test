@@ -64,9 +64,16 @@
 
 .navbar .container ul li {
   font-size: 1.5rem;
+  margin-top: -6px;
   margin-right: 15px;
   text-align: center;
   list-style-type: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar .container ul li {
+    font-size: 1.2rem;
+  }
 }
 
 .navbar .container hr {

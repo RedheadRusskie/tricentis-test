@@ -9,20 +9,33 @@
     font-size: 2rem;
     padding: 0.7em;
     border-radius: 50px;
-    background-color: var(--main);
-    min-width: 17em;
-    color: white;
-    box-shadow: 1px 1px 68px -4px var(--main);
+    background-color: #fff;
+    width: 17em;
+    color: var(--main);
   }
 
   input:focus {
     outline: none;
-    background-color: white;
-    color: var(--main);
-    box-shadow: 1px 1px 68px -4px rgba(108, 78, 190, 0);
+    background-color: var(--main);
+    color: #fff;
+    box-shadow: 1px 1px 68px -4px var(--main);
+  }
+
+  @media only screen and (max-width: 1080px) {
+    input {
+      width: 15em;
+    }
+  }
+
+  @media only screen and (max-width: 720px) {
+    input {
+      width: 9em;
+      padding: 0.7em;
+      font-size: 1.5rem;
+    }
   }
 }
 
 ::placeholder {
-  color: white;
+  color: vaR(--main);
 }
