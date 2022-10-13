@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;1,800&family=Quicksand:wght@300;400;700&display=swap');
+
+:root {
+  --text-color: #474747;
+  --main: rgba(78, 86, 190, 0.959);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter Tight', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 0%;
+  height: 100vh;
+  background-image: linear-gradient(to top, rgb(251, 194, 235) 0%, rgb(166, 193, 238) 100%); left: -527px; top: -813px;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes enterIn {
+  from { opacity: 0; transform: translateY(-5em); }
+  to { opacity: 1 }
+}
+

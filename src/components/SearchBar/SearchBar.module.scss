@@ -1,0 +1,28 @@
+.searchbar {
+  display: flex;
+  justify-content: center;
+
+  input {
+    transition: 0.5s;
+    border: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 2rem;
+    padding: 0.7em;
+    border-radius: 50px;
+    background-color: var(--main);
+    min-width: 17em;
+    color: white;
+    box-shadow: 1px 1px 68px -4px var(--main);
+  }
+
+  input:focus {
+    outline: none;
+    background-color: white;
+    color: var(--main);
+    box-shadow: 1px 1px 68px -4px rgba(108, 78, 190, 0);
+  }
+}
+
+::placeholder {
+  color: white;
+}

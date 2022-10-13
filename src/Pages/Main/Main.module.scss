@@ -1,0 +1,13 @@
+.main {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+  animation: enterIn 0.5s;
+}
+
+@keyframes enterIn {
+  from { opacity: 0; transform: translateY(-5em); }
+  to { opacity: 1 }
+}
