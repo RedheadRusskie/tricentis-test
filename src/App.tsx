@@ -1,10 +1,10 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 // components
-import { NavBar } from './components/NavBar/NavBar';
-import { Main } from './Pages/Main/Main';
-import { TaskII } from './Pages/TaskII/TaskII';
+import { NavBar } from "./components/NavBar/NavBar";
+import { Main } from "./Pages/Main/Main";
+import { TaskII } from "./Pages/TaskII/TaskII";
 
 // hooks
 import { BrowserRouter, Routes, Route } from "react-router-dom";

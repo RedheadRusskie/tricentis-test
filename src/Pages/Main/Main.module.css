@@ -11,8 +11,7 @@
 @-webkit-keyframes enterIn {
   from {
     opacity: 0;
-    -webkit-transform: translateY(-5em);
-            transform: translateY(-5em);
+    transform: translateY(-5em);
   }
   to {
     opacity: 1;
@@ -22,11 +21,9 @@
 @keyframes enterIn {
   from {
     opacity: 0;
-    -webkit-transform: translateY(-5em);
-            transform: translateY(-5em);
+    transform: translateY(-5em);
   }
   to {
     opacity: 1;
   }
-}
-/*# sourceMappingURL=Main.module.css.map */
+}/*# sourceMappingURL=Main.module.css.map */

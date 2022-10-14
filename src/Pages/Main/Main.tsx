@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC } from "react";
 
 // styles
 import styles from "./Main.module.css";
@@ -7,5 +7,9 @@ import styles from "./Main.module.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 
 export const Main: FC = () => {
-  return <div className={styles.main}><SearchBar /></div>
-}
+  return (
+    <div className={styles.main}>
+      <SearchBar />
+    </div>
+  );
+};
