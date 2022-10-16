@@ -1,7 +1,4 @@
 import { FC } from "react"
-
-
-// styles
 import styles from "./TaskII.module.css";
 
 export const TaskII: FC = () => {
