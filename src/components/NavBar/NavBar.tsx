@@ -1,9 +1,5 @@
 import { FC } from "react";
-
-// hooks
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
-// styles
 import styles from "./NavBar.module.css";
 
 export const NavBar: FC = () => {
