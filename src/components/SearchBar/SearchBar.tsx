@@ -1,11 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
-
 import axios from "axios";
 import { uniqBy } from "lodash-es";
-
-// styles
 import styles from "./SearchBar.module.css";
 import { useDebouncedState } from "../../hooks/useDebouncedState";
 
