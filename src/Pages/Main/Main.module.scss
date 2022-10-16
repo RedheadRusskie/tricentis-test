@@ -11,3 +11,9 @@
   from { opacity: 0; transform: translateY(-5em); }
   to { opacity: 1 }
 }
+
+@media only screen and (max-width: 600px) {
+  .main {
+    width: 100%;
+  }
+}

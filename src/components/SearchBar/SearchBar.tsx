@@ -1,57 +1,109 @@
-import { FC, FormEvent, FormEventHandler, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
+
+import { useQuery } from "@tanstack/react-query";
+
+import axios from "axios";
+import { uniqBy } from "lodash-es";
 
 // styles
 import styles from "./SearchBar.module.css";
+import { useDebouncedState } from "../../hooks/useDebouncedState";
+
+type Track = {
+  id: number;
+  collectionName: string;
+};
+
+type ApiResponse = {
+  resultCount: number;
+  results: { trackId: number; collectionName: string }[];
+};
 
 export const SearchBar: FC = () => {
-  const [userInput, setUserInput] = useState("");
-  const [resultsPool, setResultsPool] = useState([
-    { id: 1, name: "test one" },
-    { id: 2, name: "test two" },
-    { id: 3, name: "test three" },
-    { id: 4, name: "test four" },
-    { id: 5, name: "test five" },
-    { id: 6, name: "test six" },
-  ]);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useDebouncedState<
+    string | null
+  >(null, 500);
 
-  const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault();
-    console.log(userInput);
-  };
+  const { data: tracksFromApi, isLoading } = useQuery<Track[] | null>(
+    ["music", debouncedSearchTerm],
+    async () => {
+      if (!debouncedSearchTerm) {
+        return null;
+      }
 
-  const handleChange = (value: string): void => {
-    // if (value !== "") setUserInput(value);
-    setUserInput(value);
-  };
+      const {
+        data: { results },
+      } = await axios.get<ApiResponse>(
+        `https://itunes.apple.com/search?term=${debouncedSearchTerm}`
+      );
+
+      const tracks = results.map((track) => ({
+        id: track.trackId,
+        collectionName: track.collectionName
+      }));
+
+      const uniqTracks = uniqBy(tracks, (track) => track.collectionName).slice(
+        0,
+        5
+      );
+
+      return uniqTracks.length === 0 ? null : uniqTracks;
+    }
+  );
+
+  const [tracks, setTracks] = useState(tracksFromApi);
+
+  useEffect(() => {
+    setTracks(tracksFromApi);
+  }, [tracksFromApi]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setResultsPool(resultsPool.slice(1).concat(resultsPool[0]));
+      setTracks((prev) => prev && prev.slice(1).concat(prev[0]));
     }, 1000);
+
     return () => clearInterval(timer);
-  }, [resultsPool]);
+  }, [
+    /** reset timer each time results for a new search term are loaded */
+    tracksFromApi,
+  ]);
+
+  const handleChange = useCallback(
+    (value: string) => {
+      if (value === "") {
+        return setDebouncedSearchTerm(null);
+      }
+
+      setDebouncedSearchTerm(value);
+    },
+    [setDebouncedSearchTerm]
+  );
 
   return (
     <div className={styles.container}>
-      <form onSubmit={(e) => handleSubmit(e)} className={styles.searchbar}>
+      <form className={styles.searchbar}>
         <input
-          onChange={(e) => handleChange((e.target as HTMLInputElement).value)}
+          onChange={(e) => handleChange(e.target.value)}
           type="text"
-          placeholder="Search"
-          value={userInput}
+          placeholder="Search term"
+          defaultValue={""}
         />
       </form>
-      <ul className={styles.results}>
-        {userInput.length > 0 &&
-          resultsPool
-            .filter((result) =>
-              result.name.toLowerCase().includes(userInput.toLocaleLowerCase())
-            )
-            .map((result) => (
-              <li className={styles.result} key={result.id}>
-                {result.name}
-              </li>
-            ))}
+
+      <ul className={debouncedSearchTerm && tracks && !isLoading &&  styles.results}>
+        {isLoading ? (
+          <li className={styles.message}><i>Loading...</i></li>
+        ) : !debouncedSearchTerm ? (
+          <li className={styles.message}><i>Enter a search term</i></li>
+        ) : !tracks ? (
+          <li className={styles.message}><i>Enter a search term</i></li>
+        ) : (
+          tracks.map((result) => (
+            <li className={styles.result} key={result.id}>
+              {result.collectionName}
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

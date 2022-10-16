@@ -1,0 +1,32 @@
+.main {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+  -webkit-animation: enterIn 0.5s;
+          animation: enterIn 0.5s;
+}
+
+@-webkit-keyframes enterIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-5em);
+            transform: translateY(-5em);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes enterIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-5em);
+            transform: translateY(-5em);
+  }
+  to {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=Main.module.css.map */
