@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import "./App.css";
 import { NavBar } from "./components/NavBar/NavBar";
-import { Main } from "./pages/Main/Main";
-import { TaskII } from "./pages/TaskII/TaskII";
+import { Main } from "./Pages/Main/Main";
+import { TaskII } from "./Pages/TaskII/TaskII";
 
 const queryClient = new QueryClient();
 
